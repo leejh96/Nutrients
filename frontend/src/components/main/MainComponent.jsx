@@ -1,8 +1,8 @@
 import React from "react";
 import NavbarComponent from "./NavbarComponent";
 import styled from "styled-components";
-import Card from "./CardComponent";
-import Comment from "./CommentComponent";
+import CardComponent from "./CardComponent";
+import CommentComponent from "./CommentComponent";
 const Main = styled.main`
   box-sizing: border-box;
   width: 60%;
@@ -13,17 +13,34 @@ const Main = styled.main`
   border-radius: 5px 5px 5px 5px;
 `;
 
-function MainComponent() {
+function MainComponent({
+  onClickLikeIcon,
+  onClickCommentIcon,
+  likeToggle,
+  commentToggle,
+  isLoggedIn,
+  user,
+  comment,
+  onChangeComment,
+}) {
   return (
     <>
-      <NavbarComponent />
+      <NavbarComponent isLoggedIn={isLoggedIn} user={user} />
       <Main>
-        <Card />
-        <Comment />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <CardComponent
+          onClickLikeIcon={onClickLikeIcon}
+          onClickCommentIcon={onClickCommentIcon}
+          likeToggle={likeToggle}
+          commentToggle={commentToggle}
+          user={user}
+          isLoggedIn={isLoggedIn}
+        />
+        {commentToggle ? (
+          <CommentComponent
+            comment={comment}
+            onChangeComment={onChangeComment}
+          />
+        ) : null}
       </Main>
     </>
   );

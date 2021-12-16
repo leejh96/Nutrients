@@ -96,7 +96,7 @@ const StyledButton = styled(Button)`
   font-size: 2rem;
 `;
 
-function CommentComponent() {
+function CommentComponent({ comment, onChangeComment }) {
   return (
     <>
       <Count className="count">댓글 1개</Count>
@@ -113,7 +113,7 @@ function CommentComponent() {
             <div className="info">
               <div className="nick">닉네임</div>
               <div className="age">26</div>
-              <div className="gender">남자</div>
+              <div className="gender">남성</div>
             </div>
             <div className="create-time">하루 전</div>
           </div>
@@ -124,7 +124,7 @@ function CommentComponent() {
         </div>
       </Commnet>
       <InputSection>
-        <StyledInput type="text" />
+        <StyledInput onChange={onChangeComment} type="text" value={comment} />
         <StyledButton>등록</StyledButton>
       </InputSection>
     </>

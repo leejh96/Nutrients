@@ -75,7 +75,14 @@ const Btn = styled(Button)`
   margin: 1rem;
 `;
 
-function CardComponent() {
+function CardComponent({
+  onClickLikeIcon,
+  onClickCommentIcon,
+  likeToggle,
+  commentToggle,
+  isLoggedIn,
+  user,
+}) {
   return (
     <Card>
       <div className="user-info">
@@ -88,9 +95,12 @@ function CardComponent() {
         </div>
         <div className="info-wrap">
           <div className="info">
-            <div className="nick">닉네임</div>
-            <div className="age">26</div>
-            <div className="gender">남자</div>
+            <div className="nick">작성자닉네임</div>
+            <div className="age">작성자 나이</div>
+            <div className="gender">
+              {/* {user.gender === "male" ? "남성" : "여성"} */}
+              작성자 성별
+            </div>
           </div>
           <div className="create-time">하루 전</div>
         </div>
@@ -101,14 +111,22 @@ function CardComponent() {
       </div>
       <div className="like-comment">
         <div className="like">
-          <Btn>
-            <AiOutlineLike size={25} />
+          <Btn onClick={onClickLikeIcon}>
+            {likeToggle ? (
+              <AiFillLike size={25} />
+            ) : (
+              <AiOutlineLike size={25} />
+            )}
           </Btn>
           <div className="like-count">0</div>
         </div>
         <div className="comment">
-          <Btn>
-            <FaRegComment size={25} />
+          <Btn onClick={onClickCommentIcon}>
+            {commentToggle ? (
+              <FaComment size={25} />
+            ) : (
+              <FaRegComment size={25} />
+            )}
           </Btn>
           <div className="comment-count">0</div>
         </div>

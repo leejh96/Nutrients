@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../button/buttonComponent";
 import { Link } from "react-router-dom";
-
+import { AiFillSetting } from "react-icons/ai";
 const Nav = styled.nav`
   height: 10rem;
   display: flex;
@@ -20,6 +20,27 @@ const Nav = styled.nav`
       height: 100%;
     }
   }
+
+  .image {
+    border-radius: 70%;
+    margin-right: 1rem;
+    overflow: hidden;
+    width: 5rem;
+    height: 5rem;
+  }
+  .user-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .myinfo {
+    display: flex;
+    align-items: center;
+  }
+  .nickname {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
 `;
 
 const Btn = styled(Button)`
@@ -28,7 +49,7 @@ const Btn = styled(Button)`
   font-size: 2.5rem;
 `;
 
-function NavbarComponent() {
+function NavbarComponent({ isLoggedIn, user }) {
   return (
     <Nav>
       <div className="left">
@@ -42,12 +63,28 @@ function NavbarComponent() {
       </div>
       <div className="right">
         <div>
-          <Link to="/signin">
-            <Btn>로그인</Btn>
-          </Link>
-          <Link to="/signup">
-            <Btn>회원가입</Btn>
-          </Link>
+          {isLoggedIn ? (
+            <div className="myinfo">
+              <div className="image">
+                <img src={user.image} alt="" className="user-image" />
+              </div>
+              <div className="nickname">{user.nickname}님</div>
+              <div className="mypage-button">
+                <Link to="/mypage">
+                  <AiFillSetting size={20} color="" />
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <>
+              <Link to="/signin">
+                <Btn>로그인</Btn>
+              </Link>
+              <Link to="/signup">
+                <Btn>회원가입</Btn>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </Nav>
