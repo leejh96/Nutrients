@@ -1,6 +1,5 @@
 const userModel = require("../models/user");
 const { create, verify } = require("../modules/jwtModule");
-
 const userController = {
   signup: async (req, res) => {
     const { email, password, nickname, age, gender } = req.body;

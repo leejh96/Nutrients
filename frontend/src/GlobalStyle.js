@@ -7,6 +7,13 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-size : 10px;
   }
+
+  strong{
+    font-weight : bolder;
+  }
+  em{
+    font-style : italic;
+  }
 `;
 
 export default GlobalStyle;

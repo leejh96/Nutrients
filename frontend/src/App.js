@@ -1,22 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import SignupPage from "./pages/auth/SignupPage";
 import SigninPage from "./pages/auth/SigninPage";
+import WritePage from "./pages/WritePage";
 import GlobalStyle from "./GlobalStyle";
 import MainPage from "./pages/main/MainPage";
+import client from "./libs/client";
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [user, setUser] = useState(null);
-  const [user, setUser] = useState({
-    id: "61b996bb34b88dcb469aa98b",
-    email: "asdfasd",
-    nickname: "asdfasdf",
-    age: "123",
-    gender: "female",
-    image:
-      "https://lee-nutrient.s3.ap-northeast-2.amazonaws.com/1639560603977.png",
-  });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+
   return (
     <>
       <GlobalStyle />
@@ -32,6 +25,7 @@ function App() {
             <SigninPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
           }
         />
+        <Route path="/write" element={<WritePage />} />
       </Routes>
     </>
   );

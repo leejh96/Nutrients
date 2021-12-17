@@ -66,9 +66,9 @@ function NavbarComponent({ isLoggedIn, user }) {
           {isLoggedIn ? (
             <div className="myinfo">
               <div className="image">
-                <img src={user.image} alt="" className="user-image" />
+                <img src="" alt="" className="user-image" />
               </div>
-              <div className="nickname">{user.nickname}님</div>
+              <div className="nickname">누구님</div>
               <div className="mypage-button">
                 <Link to="/mypage">
                   <AiFillSetting size={20} color="" />
