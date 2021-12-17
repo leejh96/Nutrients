@@ -1,8 +1,31 @@
-import React from "react";
-import SigninComponent from "../../components/auth/SigninComponent";
+import React, { useState } from "react";
+import SignInComponent from "../../components/auth/SigninComponent";
+function SignInContainer() {
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+  });
 
-function SigninContainer() {
-  return <SigninComponent />;
+  const onChangeInput = (e) => {
+    const { name, value } = e.target;
+
+    setUserInfo({
+      ...userInfo,
+      [name]: value,
+    });
+  };
+
+  const onClickSubmit = () => {
+    alert("로그인 성공");
+  };
+
+  return (
+    <SignInComponent
+      userInfo={userInfo}
+      onChangeInput={onChangeInput}
+      onClickSubmit={onClickSubmit}
+    />
+  );
 }
 
-export default SigninContainer;
+export default SignInContainer;

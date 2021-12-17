@@ -27,20 +27,22 @@ function MainComponent({
     <>
       <NavbarComponent isLoggedIn={isLoggedIn} user={user} />
       <Main>
-        <CardComponent
-          onClickLikeIcon={onClickLikeIcon}
-          onClickCommentIcon={onClickCommentIcon}
-          likeToggle={likeToggle}
-          commentToggle={commentToggle}
-          user={user}
-          isLoggedIn={isLoggedIn}
-        />
-        {commentToggle ? (
-          <CommentComponent
-            comment={comment}
-            onChangeComment={onChangeComment}
+        <>
+          <CardComponent
+            onClickLikeIcon={onClickLikeIcon}
+            onClickCommentIcon={onClickCommentIcon}
+            likeToggle={likeToggle}
+            commentToggle={commentToggle}
+            user={user}
+            isLoggedIn={isLoggedIn}
           />
-        ) : null}
+          {commentToggle ? (
+            <CommentComponent
+              comment={comment}
+              onChangeComment={onChangeComment}
+            />
+          ) : null}
+        </>
       </Main>
     </>
   );
