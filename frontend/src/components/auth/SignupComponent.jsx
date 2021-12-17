@@ -40,8 +40,8 @@ const StyledButton = styled.button`
   color: #fff;
 `;
 
-function SignupComponent(userInfo) {
-  const { email, password, nickname, age } = userInfo;
+function SignupComponent({ onChangeInput, input, onClickSubmit }) {
+  const { email, password, nickname, age, gender } = input;
   return (
     <>
       <AuthTemplate>
@@ -51,20 +51,48 @@ function SignupComponent(userInfo) {
             name="email"
             value={email}
             placeholder="이메일을 입력하세요"
+            onChange={onChangeInput}
           />
           <StyledInput
             type="password"
             name="password"
             value={password}
             placeholder="비밀번호를 입력하세요"
+            onChange={onChangeInput}
           />
           <StyledInput
             name="nickname"
             value={nickname}
             placeholder="닉네임을 입력하세요"
+            onChange={onChangeInput}
           />
-          <StyledInput name="age" value={age} placeholder="나이를 입력하세요" />
-          <StyledButton>회원가입</StyledButton>
+          <StyledInput
+            name="age"
+            value={age}
+            placeholder="나이를 입력하세요"
+            onChange={onChangeInput}
+          />
+          <div
+            style={{ display: "flex", alignItems: "center", marginTop: "1rem" }}
+          >
+            <span>남성</span>
+            <input
+              type="radio"
+              name="gender"
+              value="male"
+              checked={gender === "male"}
+              onChange={onChangeInput}
+            />
+            <span>여성</span>
+            <input
+              type="radio"
+              name="gender"
+              value="female"
+              checked={gender === "female"}
+              onChange={onChangeInput}
+            />
+          </div>
+          <StyledButton onClick={onClickSubmit}>회원가입</StyledButton>
         </SignUpFormBlock>
       </AuthTemplate>
     </>

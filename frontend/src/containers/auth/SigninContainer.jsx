@@ -1,24 +1,36 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import SignInComponent from "../../components/auth/SigninComponent";
 import client from "../../libs/client";
 import { useNavigate } from "react-router-dom";
-function SignInContainer({ setIsLoggedIn, setUser }) {
-  const [userInfo, setUserInfo] = useState({
+import UserContext from "../../context/UserContext";
+function SignInContainer() {
+  const [input, setInput] = useState({
     email: "",
     password: "",
   });
   const navigate = useNavigate();
+  const { setUserInfo, setIsLoggedIn } = useContext(UserContext);
+
+  useEffect(() => {
+    return () => {
+      setInput({
+        email: "",
+        password: "",
+      });
+    };
+  }, []);
   const onChangeInput = (e) => {
     const { name, value } = e.target;
-    setUserInfo({
-      ...userInfo,
+    setInput({
+      ...input,
       [name]: value,
     });
   };
 
-  const onClickSubmit = async () => {
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
     try {
-      const { email, password } = userInfo;
+      const { email, password } = input;
       const res = await client.post("/user/signin", {
         email,
         password,
@@ -28,9 +40,14 @@ function SignInContainer({ setIsLoggedIn, setUser }) {
         client.defaults.headers.common[
           "Authorization"
         ] = `${res.data.accessToken}`;
-        const user = await client.get("/user");
 
-        setIsLoggedIn(true);
+        try {
+          const res = await client.get("/user");
+          setUserInfo(res.data.user);
+          setIsLoggedIn(true);
+        } catch (error) {
+          return alert(error.response.data.message);
+        }
         navigate("/");
       }
     } catch (error) {
@@ -46,9 +63,9 @@ function SignInContainer({ setIsLoggedIn, setUser }) {
 
   return (
     <SignInComponent
-      userInfo={userInfo}
+      input={input}
       onChangeInput={onChangeInput}
-      onClickSubmit={onClickSubmit}
+      onSubmitForm={onSubmitForm}
     />
   );
 }

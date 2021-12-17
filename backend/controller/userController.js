@@ -1,5 +1,5 @@
 const userModel = require("../models/user");
-const { create, verify } = require("../modules/jwtModule");
+const { create } = require("../modules/jwtModule");
 const userController = {
   signup: async (req, res) => {
     const { email, password, nickname, age, gender } = req.body;
@@ -56,6 +56,16 @@ const userController = {
         message: "DB 서버 에러",
       });
     }
+  },
+  getUser: (req, res) => {
+    if (!req.user) {
+      return res.status(400).json({
+        message: "유저 정보가 없습니다.",
+      });
+    }
+    res.status(200).json({
+      user: req.user,
+    });
   },
 };
 

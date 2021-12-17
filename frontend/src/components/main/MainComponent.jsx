@@ -13,36 +13,18 @@ const Main = styled.main`
   border-radius: 5px 5px 5px 5px;
 `;
 
-function MainComponent({
-  onClickLikeIcon,
-  onClickCommentIcon,
-  likeToggle,
-  commentToggle,
-  isLoggedIn,
-  user,
-  comment,
-  onChangeComment,
-}) {
+function MainComponent({ board }) {
   return (
     <>
-      <NavbarComponent isLoggedIn={isLoggedIn} user={user} />
+      <NavbarComponent />
       <Main>
-        <>
-          <CardComponent
-            onClickLikeIcon={onClickLikeIcon}
-            onClickCommentIcon={onClickCommentIcon}
-            likeToggle={likeToggle}
-            commentToggle={commentToggle}
-            user={user}
-            isLoggedIn={isLoggedIn}
-          />
-          {commentToggle ? (
-            <CommentComponent
-              comment={comment}
-              onChangeComment={onChangeComment}
-            />
-          ) : null}
-        </>
+        {board.length > 0 &&
+          board.map((post) => (
+            <div key={post.id}>
+              <CardComponent post={post} />
+              <CommentComponent />
+            </div>
+          ))}
       </Main>
     </>
   );

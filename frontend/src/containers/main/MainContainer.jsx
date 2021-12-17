@@ -1,38 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MainComponent from "../../components/main/MainComponent";
+import UserContext from "../../context/UserContext";
+import client from "../../libs/client";
 
-function MainContainer({ isLoggedIn, user }) {
-  const [comment, setComment] = useState("");
-  const [commentToggle, setCommentToggle] = useState(false);
-  const [likeToggle, setLikeToggle] = useState(false);
-  const onChangeComment = (e) => {
-    setComment(e.target.value);
-  };
-  const onClickCommentIcon = () => {
-    if (!isLoggedIn) {
-      return alert("로그인 해주세요");
+function MainContainer() {
+  const [board, setBoard] = useState([]);
+  // const { userInfo } = useContext(UserContext);
+  const fetchData = async () => {
+    const res = await client.get("/board");
+    if (res.status === 200) {
+      return res.data.posts;
     }
-    setCommentToggle((prev) => !prev);
-  };
-  const onClickLikeIcon = () => {
-    if (!isLoggedIn) {
-      return alert("로그인 해주세요");
-    }
-    setLikeToggle((prev) => !prev);
   };
 
-  return (
-    <MainComponent
-      commentToggle={commentToggle}
-      likeToggle={likeToggle}
-      onClickCommentIcon={onClickCommentIcon}
-      onClickLikeIcon={onClickLikeIcon}
-      isLoggedIn={isLoggedIn}
-      user={user}
-      comment={comment}
-      onChangeComment={onChangeComment}
-    />
-  );
+  useEffect(() => {
+    setBoard(fetchData());
+  }, []);
+  return <MainComponent board={board} />;
 }
 
 export default MainContainer;

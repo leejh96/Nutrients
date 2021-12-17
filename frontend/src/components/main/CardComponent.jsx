@@ -75,14 +75,7 @@ const Btn = styled(Button)`
   margin: 1rem;
 `;
 
-function CardComponent({
-  onClickLikeIcon,
-  onClickCommentIcon,
-  likeToggle,
-  commentToggle,
-  isLoggedIn,
-  user,
-}) {
+function CardComponent({ post }) {
   return (
     <Card>
       <div className="user-info">
@@ -95,21 +88,21 @@ function CardComponent({
         </div>
         <div className="info-wrap">
           <div className="info">
-            <div className="nick">작성자닉네임</div>
-            <div className="age">작성자 나이</div>
+            <div className="nick">{post.writer.nickname}</div>
+            <div className="age">{post.writer.age}</div>
             <div className="gender">
-              {/* {user.gender === "male" ? "남성" : "여성"} */}
+              {post.writer.gender === "male" ? "남성" : "여성"}
               작성자 성별
             </div>
           </div>
-          <div className="create-time">하루 전</div>
+          <div className="create-time">{post.createAt}</div>
         </div>
       </div>
       <div className="text">
         안녕하세요 ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ
         dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
       </div>
-      <div className="like-comment">
+      {/* <div className="like-comment">
         <div className="like">
           <Btn onClick={onClickLikeIcon}>
             {likeToggle ? (
@@ -130,7 +123,7 @@ function CardComponent({
           </Btn>
           <div className="comment-count">0</div>
         </div>
-      </div>
+      </div> */}
     </Card>
   );
 }
