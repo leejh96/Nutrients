@@ -5,6 +5,7 @@ const WriteProvider = ({ children }) => {
     title: "",
     body: "",
     imgURL: "",
+    imgFile: null,
   });
   return (
     <WriteContext.Provider

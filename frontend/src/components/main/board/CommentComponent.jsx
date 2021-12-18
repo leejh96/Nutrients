@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../button/buttonComponent";
+import Button from "../../button/buttonComponent";
 
 const Count = styled.div`
   font-size: 2rem;
@@ -96,39 +96,49 @@ const StyledButton = styled(Button)`
   font-size: 2rem;
 `;
 
-function CommentComponent({ comment, onChangeComment }) {
+function CommentComponent({
+  post,
+  onChangeComment,
+  comment,
+  onClickCommentSubmit,
+}) {
   return (
     <>
-      <Count className="count">댓글 1개</Count>
-      <Commnet>
-        <div className="user-info">
-          <div className="image">
-            <img
-              className="user-image"
-              src="https://lee-nutrient.s3.ap-northeast-2.amazonaws.com/1639560603977.png"
-              alt=""
-            />
-          </div>
-          <div className="info-wrap">
-            <div className="info">
-              <div className="nick">닉네임</div>
-              <div className="age">26</div>
-              <div className="gender">남성</div>
-            </div>
-            <div className="create-time">하루 전</div>
-          </div>
-        </div>
-        <div className="text">
-          안녕하세요 ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ
-          dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-        </div>
-      </Commnet>
+      {post.comment.length > 0 && (
+        <>
+          <Count className="count">{post.comment.length}</Count>
+          {post.comment.map((comment) => (
+            <Commnet key={comment._id}>
+              <div className="user-info">
+                <div className="image">
+                  <img
+                    className="user-image"
+                    src={comment.writer.image}
+                    alt=""
+                  />
+                </div>
+                <div className="info-wrap">
+                  <div className="info">
+                    <div className="nick">{comment.writer.nickname}</div>
+                    <div className="age">{comment.writer.age}</div>
+                    <div className="gender">
+                      {comment.writer.gender === "male" ? "남성" : "여성"}
+                    </div>
+                  </div>
+                  <div className="create-time">{comment.date}</div>
+                </div>
+              </div>
+              <div className="text">{comment.text}</div>
+            </Commnet>
+          ))}
+        </>
+      )}
+
       <InputSection>
-        <StyledInput onChange={onChangeComment} type="text" value={comment} />
-        <StyledButton>등록</StyledButton>
+        <StyledInput type="text" onChange={onChangeComment} value={comment} />
+        <StyledButton onClick={onClickCommentSubmit}>등록</StyledButton>
       </InputSection>
     </>
   );
 }
-
 export default CommentComponent;

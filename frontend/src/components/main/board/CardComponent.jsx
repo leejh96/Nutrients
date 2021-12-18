@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { FaComment, FaRegComment } from "react-icons/fa";
-import Button from "../button/buttonComponent";
+import Button from "../../button/buttonComponent";
 const Card = styled.div`
   box-sizing: border-box;
   border: none;
@@ -44,6 +44,19 @@ const Card = styled.div`
   .age {
     margin-right: 1rem;
   }
+  .title {
+    font-size: 2rem;
+    padding: 1.5rem;
+  }
+  .post-image {
+    width: 100px;
+    height: 100px;
+    padding: 1.5rem;
+  }
+  .post-image-img {
+    width: 100%;
+    height: 100%;
+  }
   .text {
     font-size: 1.5rem;
     padding: 1.5rem;
@@ -75,16 +88,19 @@ const Btn = styled(Button)`
   margin: 1rem;
 `;
 
-function CardComponent({ post }) {
+function CardComponent({
+  post,
+  likeToggle,
+  onClickLike,
+  likeCount,
+  onClickCommentToggle,
+  commentToggle,
+}) {
   return (
     <Card>
       <div className="user-info">
         <div className="image">
-          <img
-            className="user-image"
-            src="https://lee-nutrient.s3.ap-northeast-2.amazonaws.com/1639560603977.png"
-            alt=""
-          />
+          <img className="user-image" src={post.writer.image} alt="" />
         </div>
         <div className="info-wrap">
           <div className="info">
@@ -92,38 +108,49 @@ function CardComponent({ post }) {
             <div className="age">{post.writer.age}</div>
             <div className="gender">
               {post.writer.gender === "male" ? "남성" : "여성"}
-              작성자 성별
             </div>
           </div>
           <div className="create-time">{post.createAt}</div>
         </div>
       </div>
-      <div className="text">
-        안녕하세요 ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ
-        dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-      </div>
-      {/* <div className="like-comment">
+      <div className="title">{post.title}</div>
+      {post.image && (
+        <div className="post-image">
+          <img
+            className="post-image-img"
+            src={post.image}
+            alt="/"
+            width={30}
+            height={30}
+          />
+        </div>
+      )}
+      <div
+        dangerouslySetInnerHTML={{ __html: post.text }}
+        className="text"
+      ></div>
+      <div className="like-comment">
         <div className="like">
-          <Btn onClick={onClickLikeIcon}>
+          <Btn onClick={onClickLike}>
             {likeToggle ? (
               <AiFillLike size={25} />
             ) : (
               <AiOutlineLike size={25} />
             )}
           </Btn>
-          <div className="like-count">0</div>
+          <div className="like-count">{likeCount}</div>
         </div>
         <div className="comment">
-          <Btn onClick={onClickCommentIcon}>
+          <Btn onClick={onClickCommentToggle}>
             {commentToggle ? (
               <FaComment size={25} />
             ) : (
               <FaRegComment size={25} />
             )}
           </Btn>
-          <div className="comment-count">0</div>
+          <div className="comment-count">{post.comment.length}</div>
         </div>
-      </div> */}
+      </div>
     </Card>
   );
 }

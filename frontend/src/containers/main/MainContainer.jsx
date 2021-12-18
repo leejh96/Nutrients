@@ -1,21 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import MainComponent from "../../components/main/MainComponent";
-import UserContext from "../../context/UserContext";
+import BoardContext from "../../context/BoardContext";
 import client from "../../libs/client";
 
 function MainContainer() {
-  const [board, setBoard] = useState([]);
-  // const { userInfo } = useContext(UserContext);
-  const fetchData = async () => {
-    const res = await client.get("/board");
-    if (res.status === 200) {
-      return res.data.posts;
-    }
-  };
-
+  const { board, setBoard } = useContext(BoardContext);
   useEffect(() => {
-    setBoard(fetchData());
-  }, []);
+    const fetchData = async () => {
+      const res = await client.get("/board");
+      setBoard(res.data.posts);
+    };
+    fetchData();
+
+    return () => {
+      setBoard([]);
+    };
+  }, [setBoard]);
+
   return <MainComponent board={board} />;
 }
 
