@@ -14,6 +14,13 @@ function MainContainer() {
     }
     navigate("/write");
   };
+
+  const onClickPostButton = () => {
+    if (!userInfo) {
+      return alert("로그인 후 이용가능 합니다.");
+    }
+    navigate("/write");
+  };
   useEffect(() => {
     const fetchData = async () => {
       const res = await client.get("/board");
@@ -31,6 +38,7 @@ function MainContainer() {
       userInfo={userInfo}
       board={board}
       onClickWrite={onClickWrite}
+      onClickPostButton={onClickPostButton}
     />
   );
 }

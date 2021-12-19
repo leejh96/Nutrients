@@ -2,7 +2,6 @@ import React from "react";
 import NavbarComponent from "./NavbarComponent";
 import styled from "styled-components";
 import Button from "../button/buttonComponent";
-import { Link } from "react-router-dom";
 import PostContainer from "../../containers/main/PostContainer";
 
 const Main = styled.main`
@@ -42,22 +41,23 @@ const WriteButton = styled(Button)`
   font-size: 2rem;
   background: white;
 `;
-function MainComponent({ board, onClickWrite }) {
+function MainComponent({ userInfo, board, onClickWrite, onClickPostButton }) {
   return (
     <>
       <NavbarComponent />
       <Main>
-        <WriteButtonWrap>
-          <WriteButton onClick={onClickWrite}>글 작성</WriteButton>
-        </WriteButtonWrap>
+        {board.length > 0 && (
+          <WriteButtonWrap>
+            <WriteButton onClick={onClickWrite}>글 작성</WriteButton>
+          </WriteButtonWrap>
+        )}
+
         {board.length > 0 ? (
           board.map((post) => <PostContainer key={post._id} post={post} />)
         ) : (
           <Notice>
             <div>게시물을 등록하세요</div>
-            <Link to="/write">
-              <PostButton>작성하기</PostButton>
-            </Link>
+            <PostButton onClick={onClickPostButton}>작성하기</PostButton>
           </Notice>
         )}
       </Main>

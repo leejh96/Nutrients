@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-
+import { AiFillCamera } from "react-icons/ai";
 const ImageWrap = styled.div`
   width: 8rem;
   height: 8rem;
@@ -12,13 +12,15 @@ const ImageWrap = styled.div`
 `;
 
 const ImageBlock = styled.div`
-  width: 8rem;
-  height: 8rem;
   border-radius: 4px;
+  width: 100%;
+  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #9e9e9e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 function EditImage({ imgURL, onChangeImage }) {
@@ -30,7 +32,9 @@ function EditImage({ imgURL, onChangeImage }) {
     <ImageWrap onClick={onClickImg}>
       <ImageBlock
         style={{ backgroundImage: imgURL ? `url(${imgURL})` : `none` }}
-      />
+      >
+        {!imgURL && <AiFillCamera size={45} />}
+      </ImageBlock>
       <input
         type="file"
         hidden={true}

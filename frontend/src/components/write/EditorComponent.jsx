@@ -6,6 +6,8 @@ import EditImageComponent from "./image/EditImageComponent";
 
 const EditorWrap = styled.div`
   padding-top: 2rem;
+  width: 60%;
+  margin: 0 auto;
 `;
 
 const TitleInput = styled.input`
@@ -18,6 +20,7 @@ const TitleInput = styled.input`
   margin-bottom: 2rem;
   width: 100%;
   box-sizing: border-box;
+  background: rgb(247, 247, 247);
 `;
 
 const QuillWrapper = styled.div`
@@ -39,7 +42,7 @@ function EditorComponent({ onChangeField, imgURL, onChangeImage, writeInfo }) {
         { indent: "-1" },
         { indent: "+1" },
       ],
-      ["link", "image"],
+      ["link"],
       [{ align: [] }, { color: [] }, { background: [] }],
       ["clean"],
     ],
@@ -56,7 +59,6 @@ function EditorComponent({ onChangeField, imgURL, onChangeImage, writeInfo }) {
     "bullet",
     "indent",
     "link",
-    "image",
     "align",
     "color",
     "background",
@@ -72,7 +74,6 @@ function EditorComponent({ onChangeField, imgURL, onChangeImage, writeInfo }) {
       value: body,
     });
   };
-
   return (
     <EditorWrap>
       <TitleInput
