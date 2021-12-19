@@ -28,13 +28,30 @@ const PostButton = styled(Button)`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
   font-size: 2rem;
 `;
-function MainComponent({ board }) {
+
+const WriteButtonWrap = styled.div`
+  width: 60%;
+  margin: 0 auto 1rem;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const WriteButton = styled(Button)`
+  border: 1px solid grey;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+  font-size: 2rem;
+  background: white;
+`;
+function MainComponent({ board, onClickWrite }) {
   return (
     <>
       <NavbarComponent />
       <Main>
+        <WriteButtonWrap>
+          <WriteButton onClick={onClickWrite}>글 작성</WriteButton>
+        </WriteButtonWrap>
         {board.length > 0 ? (
-          board.map((post) => <PostContainer key={post.id} post={post} />)
+          board.map((post) => <PostContainer key={post._id} post={post} />)
         ) : (
           <Notice>
             <div>게시물을 등록하세요</div>

@@ -19,6 +19,7 @@ function PostComponent({
   comment,
   onChangeComment,
   onClickCommentSubmit,
+  commentCount,
 }) {
   return (
     <PostWrapper>
@@ -29,6 +30,7 @@ function PostComponent({
         likeCount={likeCount}
         onClickCommentToggle={onClickCommentToggle}
         commentToggle={commentToggle}
+        commentCount={commentCount}
       />
       {commentToggle && (
         <CommentComponent
@@ -37,6 +39,7 @@ function PostComponent({
           onChangeComment={onChangeComment}
           comment={comment}
           onClickCommentSubmit={onClickCommentSubmit}
+          commentCount={commentCount}
         />
       )}
     </PostWrapper>

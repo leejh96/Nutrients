@@ -29,7 +29,7 @@ const Commnet = styled.section`
     overflow: hidden;
     width: 5rem;
     height: 5rem;
-    border: 1px solid black;
+    border: 1px solid grey;
   }
   .user-image {
     width: 100%;
@@ -79,20 +79,22 @@ const Commnet = styled.section`
 `;
 
 const InputSection = styled.div`
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   margin-bottom: 3rem;
   width: 100%;
+  padding: 0 2rem 1rem;
 `;
 
 const StyledInput = styled.input`
   font-size: 2.5rem;
-  width: 80%;
+  width: 70%;
 `;
 
 const StyledButton = styled(Button)`
   width: 15%;
-  background: white;
+  background: rgb(235, 235, 235);
   font-size: 2rem;
 `;
 
@@ -101,19 +103,23 @@ function CommentComponent({
   onChangeComment,
   comment,
   onClickCommentSubmit,
+  commentCount,
 }) {
   return (
     <>
-      {post.comment.length > 0 && (
+      {commentCount > 0 && (
         <>
-          <Count className="count">{post.comment.length}</Count>
+          <Count className="count">댓글 {commentCount}</Count>
           {post.comment.map((comment) => (
             <Commnet key={comment._id}>
               <div className="user-info">
                 <div className="image">
                   <img
                     className="user-image"
-                    src={comment.writer.image}
+                    src={
+                      comment.writer.image ||
+                      "https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png"
+                    }
                     alt=""
                   />
                 </div>

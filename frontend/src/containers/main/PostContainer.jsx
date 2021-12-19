@@ -11,6 +11,7 @@ function PostContainer({ post }) {
   );
   const [commentToggle, setCommentToggle] = useState(false);
   const [comment, setComment] = useState("");
+  const [commentCount, setCommentCount] = useState(post.comment.length);
   const onClickLike = async () => {
     if (!userInfo) {
       return alert("로그인 후 이용가능 합니다.");
@@ -44,8 +45,8 @@ function PostContainer({ post }) {
         userId: userInfo.id,
         date: Date.now(),
       });
-      console.log(res);
       if (res.status === 200) {
+        setCommentCount((prev) => prev + 1);
         setComment("");
       }
     } catch (error) {
@@ -63,6 +64,7 @@ function PostContainer({ post }) {
       onClickCommentToggle={onClickCommentToggle}
       onChangeComment={onChangeComment}
       comment={comment}
+      commentCount={commentCount}
       onClickCommentSubmit={onClickCommentSubmit}
     />
   );

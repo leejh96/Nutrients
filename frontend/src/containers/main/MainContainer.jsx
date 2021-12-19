@@ -1,10 +1,19 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MainComponent from "../../components/main/MainComponent";
-import BoardContext from "../../context/BoardContext";
+import UserContext from "../../context/UserContext";
 import client from "../../libs/client";
 
 function MainContainer() {
-  const { board, setBoard } = useContext(BoardContext);
+  const [board, setBoard] = useState([]);
+  const navigate = useNavigate();
+  const { userInfo } = useContext(UserContext);
+  const onClickWrite = () => {
+    if (!userInfo) {
+      return alert("로그인 후 이용가능 합니다.");
+    }
+    navigate("/write");
+  };
   useEffect(() => {
     const fetchData = async () => {
       const res = await client.get("/board");
@@ -17,7 +26,13 @@ function MainContainer() {
     };
   }, [setBoard]);
 
-  return <MainComponent board={board} />;
+  return (
+    <MainComponent
+      userInfo={userInfo}
+      board={board}
+      onClickWrite={onClickWrite}
+    />
+  );
 }
 
 export default MainContainer;

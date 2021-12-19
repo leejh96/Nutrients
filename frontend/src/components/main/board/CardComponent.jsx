@@ -22,7 +22,7 @@ const Card = styled.div`
     overflow: hidden;
     width: 5rem;
     height: 5rem;
-    border: 1px solid black;
+    border: 1px solid grey;
   }
   .user-image {
     width: 100%;
@@ -49,8 +49,8 @@ const Card = styled.div`
     padding: 1.5rem;
   }
   .post-image {
-    width: 100px;
-    height: 100px;
+    width: 500px;
+    margin: 0 auto;
     padding: 1.5rem;
   }
   .post-image-img {
@@ -95,12 +95,20 @@ function CardComponent({
   likeCount,
   onClickCommentToggle,
   commentToggle,
+  commentCount,
 }) {
   return (
     <Card>
       <div className="user-info">
         <div className="image">
-          <img className="user-image" src={post.writer.image} alt="" />
+          <img
+            className="user-image"
+            src={
+              post.writer.image ||
+              "https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png"
+            }
+            alt=""
+          />
         </div>
         <div className="info-wrap">
           <div className="info">
@@ -116,13 +124,7 @@ function CardComponent({
       <div className="title">{post.title}</div>
       {post.image && (
         <div className="post-image">
-          <img
-            className="post-image-img"
-            src={post.image}
-            alt="/"
-            width={30}
-            height={30}
-          />
+          <img className="post-image-img" src={post.image} alt="/" />
         </div>
       )}
       <div
@@ -148,7 +150,7 @@ function CardComponent({
               <FaRegComment size={25} />
             )}
           </Btn>
-          <div className="comment-count">{post.comment.length}</div>
+          <div className="comment-count">{commentCount}</div>
         </div>
       </div>
     </Card>
