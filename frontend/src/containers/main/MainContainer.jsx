@@ -7,7 +7,8 @@ import client from "../../libs/client";
 function MainContainer() {
   const [board, setBoard] = useState([]);
   const navigate = useNavigate();
-  const { userInfo } = useContext(UserContext);
+  const { userInfo, setUserInfo, setIsLoggedIn } = useContext(UserContext);
+  const [toggle, setToggle] = useState(false);
   const onClickWrite = () => {
     if (!userInfo) {
       return alert("로그인 후 이용가능 합니다.");
@@ -21,6 +22,16 @@ function MainContainer() {
     }
     navigate("/write");
   };
+
+  const onClickLogout = async () => {
+    localStorage.removeItem("accessToken");
+    client.defaults.headers["Autorization"] = "";
+    setUserInfo(null);
+    setIsLoggedIn(false);
+    navigate("/");
+    setToggle(false);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await client.get("/board");
@@ -39,6 +50,9 @@ function MainContainer() {
       board={board}
       onClickWrite={onClickWrite}
       onClickPostButton={onClickPostButton}
+      onClickLogout={onClickLogout}
+      toggle={toggle}
+      setToggle={setToggle}
     />
   );
 }

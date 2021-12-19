@@ -41,10 +41,21 @@ const WriteButton = styled(Button)`
   font-size: 2rem;
   background: white;
 `;
-function MainComponent({ userInfo, board, onClickWrite, onClickPostButton }) {
+function MainComponent({
+  board,
+  onClickWrite,
+  onClickPostButton,
+  onClickLogout,
+  setToggle,
+  toggle,
+}) {
   return (
     <>
-      <NavbarComponent />
+      <NavbarComponent
+        onClickLogout={onClickLogout}
+        toggle={toggle}
+        setToggle={setToggle}
+      />
       <Main>
         {board.length > 0 && (
           <WriteButtonWrap>

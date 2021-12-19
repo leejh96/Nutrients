@@ -104,13 +104,14 @@ function CommentComponent({
   comment,
   onClickCommentSubmit,
   commentCount,
+  postComment,
 }) {
   return (
     <>
       {commentCount > 0 && (
         <>
           <Count className="count">댓글 {commentCount}</Count>
-          {post.comment.map((comment) => (
+          {postComment.map((comment) => (
             <Commnet key={comment._id}>
               <div className="user-info">
                 <div className="image">

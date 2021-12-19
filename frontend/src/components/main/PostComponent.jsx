@@ -20,6 +20,7 @@ function PostComponent({
   onChangeComment,
   onClickCommentSubmit,
   commentCount,
+  postComment,
 }) {
   return (
     <PostWrapper>
@@ -40,6 +41,7 @@ function PostComponent({
           comment={comment}
           onClickCommentSubmit={onClickCommentSubmit}
           commentCount={commentCount}
+          postComment={postComment}
         />
       )}
     </PostWrapper>
