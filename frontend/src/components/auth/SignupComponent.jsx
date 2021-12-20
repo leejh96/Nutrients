@@ -1,52 +1,68 @@
 import React from "react";
 import styled from "styled-components";
+import { MdArrowBackIosNew } from "react-icons/md";
+import LinkComponent from "../Link/LinkComponent";
 import AuthTemplate from "./temp/AutoTemplate";
 
-const SignUpFormBlock = styled.div`
+const SignUpNav = styled.div`
+  height: 15rem;
   box-sizing: border-box;
-
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  width: 66rem;
+  margin: 0 auto;
   h3 {
-    font-size: 1.5rem;
-    font-weight: bolder;
-    margin-bottom: 2rem;
+    margin: 0 auto;
+    z-index: 3;
+    flex-direction: column;
   }
 `;
 
+const SignUpFormBlock = styled.div`
+  box-sizing: border-box;
+`;
+
 const StyledInput = styled.input`
-  font-size: 1.2rem;
+  font-size: 2rem;
   border: none;
-  border-bottom: 1px solid #ddf8e9;
+  border-bottom: 2px solid #5a5a5a;
   outline: none;
   width: 100%;
   box-sizing: border-box;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
   & + & {
-    margin-top: 1.3rem;
+    margin-top: 2rem;
   }
 `;
 
 const StyledButton = styled.button`
   width: 100%;
+  height: 50px;
   border: none;
   border-radius: 4px;
   font-weight: bolder;
   padding: 1rem 2rem;
   outline: none;
   cursor: pointer;
-  margin-top: 1rem;
-  background: #fff;
+  background: #5a5a5a;
 
-  background-color: #ddf8e9;
-  color: #fff;
+  background-color: #787878;
+  color: white;
 `;
 
 function SignupComponent({ onChangeInput, input, onClickSubmit }) {
   const { email, password, nickname, age, gender } = input;
   return (
     <>
+      <SignUpNav>
+        <LinkComponent to="/">
+          <MdArrowBackIosNew size={50} />
+        </LinkComponent>
+        <h3>회원가입</h3>
+      </SignUpNav>
       <AuthTemplate>
         <SignUpFormBlock>
-          <h3>회원가입</h3>
           <StyledInput
             name="email"
             value={email}
@@ -73,17 +89,23 @@ function SignupComponent({ onChangeInput, input, onClickSubmit }) {
             onChange={onChangeInput}
           />
           <div
-            style={{ display: "flex", alignItems: "center", marginTop: "1rem" }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              margin: "2rem",
+              fontSize: "2rem",
+            }}
           >
             <span>남성</span>
             <input
+              className="male"
               type="radio"
               name="gender"
               value="male"
               checked={gender === "male"}
               onChange={onChangeInput}
             />
-            <span>여성</span>
+            <span style={{ marginLeft: "2rem" }}>여성</span>
             <input
               type="radio"
               name="gender"

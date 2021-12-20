@@ -48,7 +48,7 @@ const Nav = styled.nav`
 `;
 
 const Btn = styled(Button)`
-  background: rgb(221, 248, 233);
+  background: white;
   margin-left: 3rem;
   font-size: 2.5rem;
 `;
@@ -123,6 +123,9 @@ function NavbarComponent({ onClickLogout, toggle, setToggle }) {
           <ul>
             <List>
               <LinkComponent to="/mypage">마이 페이지</LinkComponent>
+            </List>
+            <List>
+              <LinkComponent to="/mypost">내가 쓴 글</LinkComponent>
             </List>
             <li style={{ cursor: "pointer" }} onClick={onClickLogout}>
               로그아웃

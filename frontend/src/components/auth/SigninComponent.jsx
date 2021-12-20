@@ -1,24 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 import { MdArrowBackIosNew } from "react-icons/md";
-import { Link } from "react-router-dom";
 import Button from "../button/buttonComponent";
+import AuthTemplate from "./temp/AutoTemplate";
+import LinkComponent from "../Link/LinkComponent";
+
 const SigninWrapper = styled.div`
-  width: 50%;
-  margin: 0 auto;
-  position: absolute;
-  top: 25%;
-  left: 25%;
   box-sizing: border-box;
 `;
 const Nav = styled.div`
-  display: flex;
-  justify-content: flex-start;
+  height: 15rem;
+  box-sizing: border-box;
   font-size: 3rem;
-  margin-bottom: 5rem;
+  display: flex;
+  align-items: center;
+  width: 66rem;
+  margin: 0 auto;
+  h3 {
+    margin: 0 auto;
+    z-index: 3;
+    flex-direction: column;
+  }
 `;
 
 const SigninForm = styled.form`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   font-size: 2.5rem;
@@ -40,48 +46,57 @@ const SigninForm = styled.form`
 `;
 
 const SubmitButton = styled(Button)`
-  width: 15%;
-  height: 3rem;
-  border: 1px solid grey;
-  background: ;
+  width: 100%;
+  height: 50px;
+  border: none;
+  margin-top: 3rem;
+  border-radius: 4px;
+  font-weight: bolder;
+  padding: 1rem 2rem;
+  outline: none;
+  cursor: pointer;
+  background: #5a5a5a;
+
+  background-color: #787878;
+  color: white;
 `;
 
 function SigninComponent({ input, onChangeInput, onSubmitForm }) {
   return (
     <SigninWrapper>
       <Nav>
-        <div className="back">
-          <Link to="/">
-            <MdArrowBackIosNew />
-          </Link>
-        </div>
+        <LinkComponent to="/">
+          <MdArrowBackIosNew size={50} />
+        </LinkComponent>
+        <h3>로그인</h3>
       </Nav>
-      <SigninForm onSubmit={onSubmitForm}>
-        <div style={{ width: "100%", marginBottom: "3rem" }}>
-          <div className="email-text">이메일</div>
-          <input
-            type="text"
-            name="email"
-            className="email"
-            onChange={onChangeInput}
-            value={input.email}
-          />
-        </div>
-        <div style={{ width: "100%", marginBottom: "3rem" }}>
-          <div className="password-text">비밀번호</div>
-          <input
-            type="password"
-            name="password"
-            id=""
-            className="password"
-            value={input.password}
-            onChange={onChangeInput}
-          />
-        </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <SubmitButton type="submit">로그인</SubmitButton>
-        </div>
-      </SigninForm>
+      <AuthTemplate>
+        <SigninForm onSubmit={onSubmitForm}>
+          <div style={{ width: "100%", marginBottom: "3rem" }}>
+            <div className="email-text">이메일</div>
+            <input
+              type="text"
+              name="email"
+              className="email"
+              onChange={onChangeInput}
+              value={input.email}
+            />
+          </div>
+          <div style={{ width: "100%", marginBottom: "3rem" }}>
+            <div className="password-text">비밀번호</div>
+            <input
+              type="password"
+              name="password"
+              className="password"
+              value={input.password}
+              onChange={onChangeInput}
+            />
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <SubmitButton type="submit">로그인</SubmitButton>
+          </div>
+        </SigninForm>
+      </AuthTemplate>
     </SigninWrapper>
   );
 }

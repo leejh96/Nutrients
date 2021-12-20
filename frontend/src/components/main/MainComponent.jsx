@@ -6,10 +6,11 @@ import PostContainer from "../../containers/main/PostContainer";
 
 const Main = styled.main`
   margin: 10rem auto 0;
-  height: 85.5vh;
+  height: calc(100vh - 10rem);
   background-color: rgb(247, 247, 247);
   padding: 3rem 5rem;
   overflow: auto;
+  box-sizing: border-box;
 `;
 
 const Notice = styled.div`

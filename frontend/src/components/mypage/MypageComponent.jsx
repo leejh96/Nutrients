@@ -1,8 +1,7 @@
-import React, { useContext, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import LinkComponent from "../Link/LinkComponent";
 import { MdArrowBackIosNew } from "react-icons/md";
-import UserContext from "../../context/UserContext";
 import Button from "../button/buttonComponent";
 const MypageWrapper = styled.div`
   background: rgb(247, 247, 247);
@@ -34,12 +33,14 @@ const FormText = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 3rem;
+  align-items: center;
 `;
 
 const StyledInput = styled.input`
   font-size: 2rem;
   width: 85%;
   outline: none;
+  height: 5rem;
 `;
 
 const PutBtn = styled(Button)`
@@ -103,7 +104,12 @@ function MypageComponent({
       <MypageForm>
         <FormText>
           <Label>이메일:</Label>
-          <StyledInput type="text" value={input ? input.email : ""} readOnly />
+          <StyledInput
+            type="text"
+            value={input ? input.email : ""}
+            readOnly
+            style={{ background: "none", border: "none" }}
+          />
         </FormText>
         <FormText>
           <Label>닉네임:</Label>
@@ -120,6 +126,7 @@ function MypageComponent({
             type="text"
             value={input ? (input.gender === "male" ? "남성" : "여성") : ""}
             readOnly
+            style={{ background: "none", border: "none" }}
           />
         </FormText>
         <FormText>

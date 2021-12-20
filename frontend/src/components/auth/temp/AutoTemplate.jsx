@@ -9,7 +9,7 @@ const AuthTemplateBlock = styled.div`
   right: 0;
   bottom: 0;
   z-index: -1;
-
+  background-color: rgb(247, 247, 247);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,8 +18,9 @@ const AuthTemplateBlock = styled.div`
 
 const WhiteBox = styled.div`
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  width: 360px;
+  padding: 8rem;
+  width: 500px;
+  height: 300px;
   background-color: #fff;
   border-radius: 2px;
 `;
