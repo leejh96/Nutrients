@@ -52,8 +52,8 @@ const ImageChange = styled.div`
   margin: 3rem auto;
   box-sizing: border-box;
   border: 1px solid grey;
-  border-radius: 50%;
-  width: 60%;
+  border-radius: 70%;
+  width: 50rem;
   height: 50rem;
   overflow: hidden;
   cursor: pointer;
