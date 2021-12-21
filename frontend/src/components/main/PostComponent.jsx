@@ -7,6 +7,11 @@ const PostWrapper = styled.div`
   width: 60%;
   background: white;
   margin: 0 auto;
+  box-shadow: 0 0 5px #cccccc;
+  border-radius: 5px;
+  @font-face {
+    font-family: "GowunBatang-Regular", sans-serif;
+  }
 `;
 
 function PostComponent({

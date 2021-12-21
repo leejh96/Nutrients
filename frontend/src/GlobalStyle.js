@@ -38,7 +38,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 .toast-success {
-  background-color: rgba(51,113,246,0.8) !important;
+  background-color: #c7c7c7 !important;
 }
 `;
 

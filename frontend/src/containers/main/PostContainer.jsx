@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import PostComponent from "../../components/main/PostComponent";
 import UserContext from "../../context/UserContext";
 import client from "../../libs/client";
+import { ToastsStore } from "react-toasts";
 
 function PostContainer({ post }) {
   const { userInfo } = useContext(UserContext);
@@ -14,6 +15,7 @@ function PostContainer({ post }) {
   const [commentCount, setCommentCount] = useState(post.comment.length);
 
   const [postComment, setPostComment] = useState(post.comment);
+
   useEffect(() => {
     const fetchCommnet = async () => {
       const res = await client.get(`/board/${post._id}`);
@@ -50,6 +52,9 @@ function PostContainer({ post }) {
 
   const onClickCommentSubmit = async () => {
     try {
+      if (!comment) {
+        return ToastsStore.success("댓글을 입력하세요");
+      }
       const res = await client.post(`/board/comment/${post._id}`, {
         text: comment,
         userId: userInfo.id,

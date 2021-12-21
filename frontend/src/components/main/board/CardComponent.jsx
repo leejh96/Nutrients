@@ -5,9 +5,6 @@ import Button from "../../button/buttonComponent";
 import TimeForDay from "../../../libs/time";
 const Card = styled.div`
   box-sizing: border-box;
-  border: none;
-  border-radius: 5px 5px 5px 5px;
-  background: #ffffff;
   width: 100%;
   margin: 0 auto 3rem;
   display: flex;

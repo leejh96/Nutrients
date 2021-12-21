@@ -15,7 +15,9 @@ const Nav = styled.nav`
   position: fixed;
   width: 100%;
   box-sizing: border-box;
-  background: #f3f8ff;
+  border-bottom: 1px solid #999999;
+  box-shadow: 1px 1px 3px 1px #999999;
+  background: rgb(247, 247, 247);
   .left {
     height: 100%;
     .logo {
@@ -51,7 +53,7 @@ const Btn = styled(Button)`
   background: white;
   margin-left: 3rem;
   font-size: 2.5rem;
-  box-shadow: 1px 1px 4px 1px #deecff;
+  box-shadow: 1px 1px 4px 1px #999999;
 `;
 
 const MyList = styled.div`
@@ -61,7 +63,7 @@ const MyList = styled.div`
   border: 1px solid black;
   z-index: 50;
   font-size: 2rem;
-  background: white;
+  background: rgb(247, 247, 247);
   padding: 1rem;
 `;
 
