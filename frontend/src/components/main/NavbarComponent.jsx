@@ -15,7 +15,7 @@ const Nav = styled.nav`
   position: fixed;
   width: 100%;
   box-sizing: border-box;
-  background: rgb(235, 235, 235);
+  background: #f3f8ff;
   .left {
     height: 100%;
     .logo {
@@ -51,6 +51,7 @@ const Btn = styled(Button)`
   background: white;
   margin-left: 3rem;
   font-size: 2.5rem;
+  box-shadow: 1px 1px 4px 1px #deecff;
 `;
 
 const MyList = styled.div`
@@ -76,7 +77,7 @@ function NavbarComponent({ onClickLogout, toggle, setToggle }) {
           <LinkComponent to="/">
             <img
               className="logo"
-              src="https://lee-nutrient.s3.ap-northeast-2.amazonaws.com/logo.png"
+              src="https://lee-nutrient.s3.ap-northeast-2.amazonaws.com/logo1.png"
               alt=""
             />
           </LinkComponent>
