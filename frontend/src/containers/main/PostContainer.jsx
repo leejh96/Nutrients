@@ -26,7 +26,7 @@ function PostContainer({ post }) {
 
   const onClickLike = async () => {
     if (!userInfo) {
-      return alert("로그인 후 이용가능 합니다.");
+      return ToastsStore.success("로그인 후 이용가능 합니다.");
     }
     if (likeToggle === true) {
       await client.post(`/board/dislike/${post._id}`, { userId: userInfo.id });
@@ -41,7 +41,7 @@ function PostContainer({ post }) {
 
   const onClickCommentToggle = () => {
     if (!userInfo) {
-      return alert("로그인 후 이용가능 합니다");
+      return ToastsStore.success("로그인 후 이용가능 합니다.");
     }
     setCommentToggle(!commentToggle);
   };

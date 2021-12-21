@@ -86,7 +86,7 @@ const InputSection = styled.div`
   justify-content: space-between;
   margin-bottom: 3rem;
   width: 100%;
-  padding: 0 2rem 1rem;
+  padding: 0 2rem 3rem;
 `;
 
 const StyledInput = styled.input`

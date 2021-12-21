@@ -5,6 +5,7 @@ import { AiFillSetting } from "react-icons/ai";
 import UserContext from "../../context/UserContext";
 import LinkComponent from "../Link/LinkComponent";
 const Nav = styled.nav`
+  min-width: 480px;
   z-index: 1;
   height: 10rem;
   display: flex;
@@ -47,6 +48,13 @@ const Nav = styled.nav`
     font-size: 1.5rem;
     margin-right: 1rem;
   }
+
+  @media (max-width: 600px) {
+    .left {
+      display: none;
+    }
+    justify-content: center;
+  }
 `;
 
 const Btn = styled(Button)`
@@ -65,6 +73,11 @@ const MyList = styled.div`
   font-size: 2rem;
   background: rgb(247, 247, 247);
   padding: 1rem;
+  @media (max-width: 600px) {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+  }
 `;
 
 const List = styled.li`

@@ -80,6 +80,11 @@ const Card = styled.div`
   .comment-button {
     margin: 1rem;
   }
+  @media (max-width: 1024px) {
+    .post-image {
+      width: 90%;
+    }
+  }
 `;
 
 const Btn = styled(Button)`
