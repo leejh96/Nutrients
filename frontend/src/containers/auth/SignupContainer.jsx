@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SignupComponent from "../../components/auth/SignupComponent";
 import client from "../../libs/client";
 import { useNavigate } from "react-router-dom";
+import { ToastsStore } from "react-toasts";
 
 function SignupContainer() {
   const navigate = useNavigate();
@@ -44,11 +45,11 @@ function SignupContainer() {
         gender,
       });
       if (res.status === 200) {
-        alert("계정이 생성되었습니다!");
+        ToastsStore.success("계정이 생성되었습니다!");
         navigate("/signin");
       }
     } catch (error) {
-      alert(error.response.data.message);
+      ToastsStore.warning(error.response.data.message);
     }
   };
   return (

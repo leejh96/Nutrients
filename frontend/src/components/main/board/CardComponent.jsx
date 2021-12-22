@@ -10,6 +10,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: "GowunBatang-Regular", sans-serif;
   .user-info {
     display: flex;
     padding: 1.5rem;

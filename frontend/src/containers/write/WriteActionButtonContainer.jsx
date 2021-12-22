@@ -38,7 +38,7 @@ function WriteActionButtonContainer() {
         ToastsStore.success("게시글 등록 완료");
       }
     } catch (error) {
-      return alert(error.response.data.message);
+      return ToastsStore.warning(error.response.data.message);
     }
   };
 

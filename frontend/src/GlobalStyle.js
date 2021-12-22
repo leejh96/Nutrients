@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
@@ -21,12 +20,19 @@ const GlobalStyle = createGlobalStyle`
   font-weight: 500;
   line-height: 22px;
   height: 20px;
-  width: 20rem;
+  min-width: 20rem;
   padding: 1rem;
   min-height: 2rem !important;
   display: flex;
   justify-content: center;
   border-radius: 8px !important;
+}
+
+@font-face {
+    font-family: 'GowunBatang-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 .toast-info {
